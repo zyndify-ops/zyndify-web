@@ -1,9 +1,19 @@
 import React, { useState } from 'react'
-import { FaBell, FaUserCircle, FaSearch, FaCog } from 'react-icons/fa'
+import { FaBell, FaUserCircle, FaSearch, FaCog, FaSignOutAlt } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
+import { showSuccess } from '../utils/toast'
 import '../styles/layout.css'
 
 const TopHeader: React.FC = () => {
   const [searchFocused, setSearchFocused] = useState(false)
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    localStorage.removeItem('authToken')
+    localStorage.removeItem('isGuest')
+    showSuccess('Logged out successfully')
+    navigate('/login')
+  }
 
   return (
     <div className="top-header">
@@ -33,6 +43,14 @@ const TopHeader: React.FC = () => {
           <FaUserCircle />
           <span>John Doe</span>
         </div>
+        <button 
+          className="logout-button" 
+          onClick={handleLogout}
+          title="Logout"
+        >
+          <FaSignOutAlt />
+          <span>Logout</span>
+        </button>
       </div>
     </div>
   )

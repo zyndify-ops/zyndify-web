@@ -19,16 +19,30 @@ const Login: React.FC = () => {
     if (response.success) {
       showSuccess('Login successful!')
       localStorage.setItem('authToken', response.data.token)
-      setTimeout(() => navigate('/dashboard'), 1500)
+      setTimeout(() => navigate('/home'), 1500)
     } else {
       showError(response.message || 'Invalid credentials')
     }
   }
 
+  const handleGuestLogin = () => {
+    showSuccess('Logged in as guest')
+    localStorage.setItem('isGuest', 'true')
+    setTimeout(() => navigate('/home'), 1500)
+  }
+
+  const handleRegister = () => {
+    showError('Registration feature is currently under development')
+  }
+
+  const handleForgotPassword = () => {
+    showError('Password recovery feature is currently under development')
+  }
+
   return (
     <AuthLayout>
       <div className="login-card">
-        <h3>Welcome Zyndify</h3>
+        <h3>Welcome to Zyndify</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-3">
             <label>Mobile Number</label>
@@ -56,10 +70,34 @@ const Login: React.FC = () => {
             {errors.password && <div className="invalid-feedback">{errors.password.message}</div>}
           </div>
 
-          <button type="submit" className="btn btn-primary w-100" disabled={isSubmitting}>
+          <button type="submit" className="btn btn-primary w-100 mb-3" disabled={isSubmitting}>
             {isSubmitting ? 'Logging in...' : 'Login'}
           </button>
         </form>
+
+        <div className="text-center">
+          <button 
+            onClick={handleGuestLogin}
+            className="btn btn-guest w-100 mb-3"
+          >
+            Login as Guest
+          </button>
+
+          <div className="d-flex justify-content-between mb-3">
+            <button 
+              onClick={handleRegister}
+              className="btn btn-link text-decoration-none"
+            >
+              Register
+            </button>
+            <button 
+              onClick={handleForgotPassword}
+              className="btn btn-link text-decoration-none"
+            >
+              Forgot Password?
+            </button>
+          </div>
+        </div>
       </div>
     </AuthLayout>
   )
