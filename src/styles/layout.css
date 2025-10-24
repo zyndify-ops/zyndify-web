@@ -1,0 +1,334 @@
+/* Glassy side nav */
+.side-nav {
+  width: 250px; /* Adjust width for visibility */
+  height: 100vh;
+  backdrop-filter: blur(16px);
+  background: linear-gradient(180deg, rgba(29, 32, 43, 0.95) 0%, rgba(22, 24, 33, 0.95) 100%);
+  color: #e4e6eb;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  transition: width 0.3s ease, all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  z-index: 10; /* Ensure SideNav is above other elements */
+  padding-bottom: 0;
+}
+
+.side-nav.minimized {
+  width: 70px; /* Keep minimized width */
+}
+
+/* Side nav items */
+.side-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+}
+
+.side-nav li {
+  display: flex;
+  align-items: center;
+  margin: 4px 8px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.side-nav li a {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  width: 100%;
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.side-nav li:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
+}
+
+.side-nav li:active {
+  transform: scale(0.98);
+}
+
+.side-nav li.active {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-weight: 500;
+  transform: translateX(4px);
+}
+
+.side-nav li.active::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 20px;
+  width: 4px;
+  background: #4f46e5;
+  border-radius: 0 4px 4px 0;
+}
+
+.side-nav li svg {
+  margin-right: 12px;
+  font-size: 1.2em;
+}
+
+.side-nav li svg {
+  font-size: 20px;
+  margin-right: 15px;
+  color: #8b92a5;
+  transition: color 0.2s ease;
+}
+
+.side-nav li:hover svg {
+  color: #e4e6eb;
+}
+
+.side-nav li span {
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: #8b92a5;
+  transition: color 0.2s ease;
+}
+
+.side-nav li:hover span {
+  color: #e4e6eb;
+}
+
+.side-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.side-nav-header .logo {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #e4e6eb;
+  flex: 1;
+  margin-right: 12px;
+}
+
+.side-nav-header .nav-toggle-btn {
+  position: absolute;
+  right: -16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(29, 32, 43, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-toggle-item {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-toggle-item svg {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.nav-toggle-item .rotate-180 {
+  transform: rotate(180deg);
+}
+.nav-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  margin: 8px 16px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-toggle-btn svg {
+  color: #8b92a5;
+  font-size: 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-toggle-btn:hover svg {
+  color: #e4e6eb;
+}
+
+.nav-toggle-btn .rotate-180 {
+  transform: rotate(180deg);
+}
+
+.side-nav.minimized li span {
+  display: none; /* hide text when minimized */
+}
+
+/* Top header */
+.top-header {
+  height: 60px;
+  backdrop-filter: blur(16px);
+  background: linear-gradient(90deg, rgba(29, 32, 43, 0.95) 0%, rgba(22, 24, 33, 0.95) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: #e4e6eb;
+  z-index: 5; /* Ensure TopHeader is below SideNav */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Adjusted layout to ensure Top Header starts after SideNav */
+
+/* Header components */
+.header-brand h4 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  background: linear-gradient(45deg, #64B5F6, #2196F3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  margin: 0;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 6px 12px;
+  width: 300px;
+  transition: all 0.3s ease;
+}
+
+.search-container.focused {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.1);
+}
+
+.search-container .search-icon {
+  color: #8b92a5;
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.search-container input {
+  background: transparent;
+  border: none;
+  color: #e4e6eb;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+}
+
+.search-container input::placeholder {
+  color: #8b92a5;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.action-icon {
+  position: relative;
+  color: #8b92a5;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.action-icon:hover {
+  color: #e4e6eb;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #2196F3;
+  color: white;
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.user-profile:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.user-profile svg {
+  font-size: 24px;
+  color: #8b92a5;
+}
+
+.user-profile span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #e4e6eb;
+}
+
+/* Main content */
+.main-content {
+  margin-left: 250px;
+  margin-top: 60px;
+  padding: 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: calc(100vh - 60px);
+  width: calc(100% - 250px);
+  position: absolute;
+  right: 0;
+}
+
+.main-content.minimized {
+  margin-left: 70px;
+  width: calc(100% - 70px);
+}
+
+/* Hamburger icon */
+.hamburger-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  /* Ensure visibility */
+  color: #fff; /* Change color as needed */
+  padding: 10px;
+}
+
+.hamburger-icon:hover {
+  opacity: 0.7;
+}
+
+.side-nav.minimized .hamburger-icon {
+  /* Adjust styles for minimized state if needed */
+  background-color: rgba(0, 0, 0, 0.5); /* Example background for visibility */
+}
